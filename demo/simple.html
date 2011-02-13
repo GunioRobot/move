@@ -1,0 +1,40 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<title>Simple Example</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<script src="http://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js" charset="utf-8"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.3/scriptaculous.js" charset="utf-8"></script>
+<script src="../src/prototype.slideshow.js" charset="utf-8"></script>
+
+<script>
+
+document.observe("dom:loaded", function() {
+	PrototypeSlideShow.render({
+		container: "slideshow",
+		elements: "li",
+		duration: "1.0",
+		timeout: "5000"
+	});
+});
+
+</script>
+
+</head>
+<body>
+  
+<ul id="slideshow">
+  <li>
+    Hallo Welt
+  </li>
+  <li style="display: none;">
+    2 Hallo Welt
+  </li>
+  <li style="display: none;">
+    3 Hallo Welt
+  </li>
+</ul>
+  
+</body>
+</html>
