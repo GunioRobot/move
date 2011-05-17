@@ -1,5 +1,5 @@
 /*
- * ----------------------------- JSTORAGE -------------------------------------
+ * ----------------------- PROTOTYPE SLIDESHOW --------------------------------
  *
  * Copyright (c) 2011 Tobias Otte, kontakt@tobias-otte.de
  * Project homepage: https://github.com/Stereobit/prototype-slideshow
@@ -30,16 +30,16 @@ var PrototypeSlideShow = Class.create({
   },
   
   initialize: function(container, elements, duration, timeout) {
-    this._container = container;
-    this._elements = this._container.getElementsBySelector(elements);
-    this._nextLink = this._container.down(this.selectors.NEXT);
-    this._previousLink = this._container.down(this.selectors.PREVIOUS);
+    var this._container = container;
+        this._elements = this._container.getElementsBySelector(elements);
+        this._nextLink = this._container.down(this.selectors.NEXT);
+        this._previousLink = this._container.down(this.selectors.PREVIOUS);
 
-    this._duration = { duration: duration };
-    this._timeout = timeout;
-    this._activeElement = 0;
+        this._duration = { duration: duration };
+        this._timeout = timeout;
+        this._activeElement = 0;
         
-    this._observe();
+        this._observe();
     
     setTimeout(this._loop.bind(this),this._timeout);
                     
