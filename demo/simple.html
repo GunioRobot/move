@@ -11,15 +11,23 @@
 <script>
 
 document.observe("dom:loaded", function() {
-	PrototypeSlideShow.render({
-		container: "slideshow",
-		elements: "li",
-		duration: "1.0",
-		timeout: "5000"
+	new PrototypeSlideShow({
+	  timeout: "2",
+    nextLink: ".next",
+	  previousLink: ".previous"
 	});
 });
 
 </script>
+
+<style type="text/css">
+  
+  #slideshow {
+    height: 100px;
+    background: #789;
+  }
+
+</style>
 
 </head>
 <body>
