@@ -1,0 +1,63 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<title>Simple Example</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<script src="http://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js" charset="utf-8"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/scriptaculous/1.8.3/scriptaculous.js" charset="utf-8"></script>
+<script src="../src/prototype.slideshow.js" charset="utf-8"></script>
+
+<script>
+
+document.observe("dom:loaded", function() {
+	new PrototypeSlideShow({
+	  timeout: "5",
+    nextLink: ".next",
+	  previousLink: ".previous",
+	  stopLink: ".stop"
+	});
+});
+
+</script>
+
+<style type="text/css">
+  
+  #slideshow {
+    
+  }
+  
+  #slideshow ul {
+    margin: 30px auto;
+    width: 600px;
+    height: 426px;
+    list-style: none;
+  }
+  
+  #slideshow li {
+    position: absolute;
+  }
+
+</style>
+
+</head>
+<body>
+<div id="slideshow">
+  <ul>
+    <li>
+      <img src="img/1.jpg">
+    </li>
+    <li style="display: none;">
+      <img src="img/2.jpg">
+    </li>
+    <li style="display: none;">
+      <img src="img/3.jpg">
+    </li>
+  </ul>
+  <a href="#" class="next">next</a>
+  <a href="#" class="stop">stop</a>
+  <a href="#" class="previous">previous</a>
+</div>
+  
+</body>
+</html>

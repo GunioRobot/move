@@ -57,8 +57,6 @@ var PrototypeSlideShow = Class.create({
     
   _loop: function(that) { 
     (function repeat() {
-      console.log(that._clickStop);
-      console.log(that._hoverStop);
       if (that._hoverStop == false && that._clickStop == false) {
         that._next();
       } 
@@ -104,7 +102,6 @@ var PrototypeSlideShow = Class.create({
     
     this._stopLink.observe('click', function(event) {
       event.preventDefault;
-      this._stopLink.toggleClassName('play');
       this._clickStop = (this._clickStop != true);
     }.bind(this));
     
