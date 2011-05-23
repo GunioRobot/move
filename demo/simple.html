@@ -14,7 +14,8 @@ document.observe("dom:loaded", function() {
 	new PrototypeSlideShow({
 	  timeout: "2",
     nextLink: ".next",
-	  previousLink: ".previous"
+	  previousLink: ".previous",
+	  stopLink: ".stop"
 	});
 });
 
@@ -25,6 +26,11 @@ document.observe("dom:loaded", function() {
   #slideshow {
     height: 100px;
     background: #789;
+  }
+  
+  .play {
+    background: #345;
+    color: #fff;
   }
 
 </style>
@@ -44,6 +50,7 @@ document.observe("dom:loaded", function() {
     </li>
   </ul>
   <a href="#" class="next">next</a>
+  <a href="#" class="stop">stop</a>
   <a href="#" class="previous">previous</a>
 </div>
   

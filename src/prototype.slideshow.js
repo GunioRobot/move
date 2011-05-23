@@ -39,14 +39,17 @@ var PrototypeSlideShow = Class.create({
     this._elements = this._container.getElementsBySelector(this.defaultConfig.ELEMENTS);
     this._nextLink = this._container.down(this._options.nextLink) || false;
     this._previousLink = this._container.down(this._options.previousLink) || false;
+    this._stopLink = this._container.down(this._options.stopLink) || false;
     this._duration = this._options.duration || this.defaultConfig.DURATION;
     this._timeout = this._options.timeout || this.defaultConfig.TIMEOUT;
+    this._autoplay = this._options.autoplay || this.defaultConfig.AUTOPLAY;
     
     this._container.addClassName("prototype-slideshow");
     
     this._activeElement = 0;
     this._elementCount = this._elements.length - 1;
-    this._play = true;
+    this._hoverStop = false;
+    this._clickStop = (this._autoplay == true) ? false : true;
     
     this._observe();
     this._loop.delay(this._timeout, this);
@@ -54,8 +57,9 @@ var PrototypeSlideShow = Class.create({
     
   _loop: function(that) { 
     (function repeat() {
-      if (that._stop() == true) {
-        console.log(that._stop());
+      console.log(that._clickStop);
+      console.log(that._hoverStop);
+      if (that._hoverStop == false && that._clickStop == false) {
         that._next();
       } 
       repeat.delay(that._timeout);
@@ -82,36 +86,34 @@ var PrototypeSlideShow = Class.create({
     }
   },
   
-  _stop: function() {
-    if (this._play == true) {
-      return true;
-    } else {
-      return false;
-    }
-  },
-  
   _fade: function(elementIn, elementOut) {
     this._elements[elementIn].fade(this._duration);
     this._elements[elementOut].appear(this._duration);
   },
   
   _observe: function() {
-    // this._nextLink.observe('click', function(event) {
-    //   Event.stop(event);
-    //   this._next();
-    // }.bind(this));
-    // 
-    // this._previousLink.observe('click', function(event) {
-    //   Event.stop(event);
-    //   this._previous();
-    // }.bind(this));
+    this._nextLink.observe('click', function(event) {
+      event.preventDefault;
+      this._next();
+    }.bind(this));
+    
+    this._previousLink.observe('click', function(event) {
+      event.preventDefault;
+      this._previous();
+    }.bind(this));
+    
+    this._stopLink.observe('click', function(event) {
+      event.preventDefault;
+      this._stopLink.toggleClassName('play');
+      this._clickStop = (this._clickStop != true);
+    }.bind(this));
     
     this._container.observe('mouseenter', function() {
-      this._play = false;
+      this._hoverStop = true;
     }.bind(this));
       
     this._container.observe('mouseleave', function() {
-      this._container.removeClassName("stoploop");
+      this._hoverStop = false;
     }.bind(this));
   }
     
