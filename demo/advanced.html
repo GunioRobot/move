@@ -1,7 +1,7 @@
 <!DOCTYPE html> 
 <html lang="en"> 
 <head> 
-<title>Simple Example</title> 
+<title>Advanced Example</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <script src="http://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js" charset="utf-8"></script>
@@ -24,46 +24,86 @@ document.observe("dom:loaded", function() {
 <style type="text/css">
   
   #slideshow {
-    
+    position: relative;
+    margin: 30px auto;
+    width: 640px;
+    height: 426px;
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    font-family: "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+    overflow: hidden;
   }
   
   #slideshow ul {
-    margin: 30px auto;
-    width: 600px;
-    height: 426px;
+    padding: 0;
+    margin: 0;
     list-style: none;
   }
   
   #slideshow li {
     position: absolute;
+    padding: 0;
+  }
+  
+  .nav {
+    width: 630px;
+    position: absolute;
+    height: 70px;
+    background: rgba(0,0,0,0.6);
+    bottom: -70px;
+    left: 0;
+    padding: 5px;
+    opacity: 0;
+  }
+  
+  #slideshow:hover .nav {
+    opacity: 100;
+    bottom: 0;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .nav a {
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
   }
 
 </style>
 
 </head>
+
 <body>
-<div id="slideshow">
-  <ul>
-    <li>
-      <img src="img/1.jpg">
-    </li>
-    <li style="display: none;">
-      <img src="img/2.jpg">
-    </li>
-    <li style="display: none;">
-      <img src="img/3.jpg">
-    </li>
-    <li style="display: none;">
-      <img src="img/4.jpg">
-    </li>
-    <li style="display: none;">
-      <img src="img/5.jpg">
-    </li>
-  </ul>
-  <a href="#" class="next">next</a>
-  <a href="#" class="stop">stop</a>
-  <a href="#" class="previous">previous</a>
-</div>
+  
+  <div id="slideshow">
+  
+    <ul>
+      <li>
+        <img src="img/1.jpg">
+      </li>
+      <li style="display: none;">
+        <img src="img/2.jpg">
+      </li>
+      <li style="display: none;">
+        <img src="img/3.jpg">
+      </li>
+      <li style="display: none;">
+        <img src="img/4.jpg">
+      </li>
+      <li style="display: none;">
+        <img src="img/5.jpg">
+      </li>
+    </ul>
+  
+    <div class="nav">
+      <a href="#" class="next">next</a>
+      <a href="#" class="stop">stop</a>
+      <a href="#" class="previous">previous</a>
+    </div>
+
+  </div>
   
 </body>
 </html>
