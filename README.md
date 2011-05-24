@@ -32,6 +32,7 @@ demo/advanced.html
 # UPDATES/FEEDBACK & BUGS
 
 ##Planed features
+* Add AJAX
 
 ##Known Bugs
 * Previous link don't work

@@ -1,4 +1,4 @@
-/*
+ /**
  * ----------------------- PROTOTYPE SLIDESHOW --------------------------------
  *
  * Copyright (c) 2011 Tobias Otte, kontakt@tobias-otte.de
@@ -20,6 +20,19 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+ *
+ * @param {Object} Options
+ *   container: {Element}
+ *
+ * @example
+ *    new PrototypeSlideShow({
+ *      timeout: "5",
+ *      nextLink: ".next",
+ *      previousLink: ".previous",
+ *      stopLink: ".stop"
+ *    });
+ *
+ * @constructor
  */
 
 var PrototypeSlideShow = Class.create({
