@@ -1,8 +1,8 @@
  /**
- * ----------------------- PROTOTYPE SLIDESHOW --------------------------------
+ * ------------------------------------ MOVE ------------------------------------
  *
  * Copyright (c) 2011 Tobias Otte, kontakt@tobias-otte.de
- * Project homepage: https://github.com/Stereobit/prototype-slideshow
+ * Project homepage: https://github.com/Stereobit/move
  *
  * Licensed under MIT-style license:
  *
@@ -25,7 +25,7 @@
  *   container: {Element}
  *
  * @example
- *    new PrototypeSlideShow({
+ *    new MoveSlideShow({
  *      timeout: "5",
  *      nextLink: ".next",
  *      previousLink: ".previous",
@@ -42,7 +42,8 @@ var MoveSlideShow = Class.create({
     ELEMENTS: "li",
     DURATION: "1.0",
     TIMEOUT: "5",
-    AUTOPLAY: true
+    AUTOPLAY: true,
+    AUTOSTOP: true
   },
   
   initialize: function(options) {    
@@ -56,23 +57,22 @@ var MoveSlideShow = Class.create({
     this._duration = this._options.duration || this.defaultConfig.DURATION;
     this._timeout = this._options.timeout || this.defaultConfig.TIMEOUT;
     this._autoplay = this._options.autoplay || this.defaultConfig.AUTOPLAY;
-    
-    this._container.addClassName("prototype-slideshow");
-    
+        
     this._activeElement = 0;
     this._elementCount = this._elements.length - 1;
     this._hoverStop = false;
     this._clickStop = (this._autoplay == true) ? false : true;
     
-    this._observe();
     this._loop.delay(this._timeout, this);
+    
+    if (this._nextLink == true) {
+      this._observeController();
+    }
   },
     
   _loop: function(that) { 
     (function repeat() {
-      if (that._hoverStop == false && that._clickStop == false) {
-        that._next();
-      } 
+      (that._hoverStop == false && that._clickStop == false) ? that._next(); 
       repeat.delay(that._timeout);
     })();
   },
@@ -102,7 +102,7 @@ var MoveSlideShow = Class.create({
     this._elements[elementOut].appear(this._duration);
   },
   
-  _observe: function() {
+  _observeController: function() {
     this._nextLink.observe('click', function(event) {
       event.preventDefault;
       this._next();
@@ -118,6 +118,9 @@ var MoveSlideShow = Class.create({
       this._clickStop = (this._clickStop != true);
     }.bind(this));
     
+  },
+  
+  _observeController: function() {
     this._container.observe('mouseenter', function() {
       this._hoverStop = true;
     }.bind(this));
@@ -126,5 +129,5 @@ var MoveSlideShow = Class.create({
       this._hoverStop = false;
     }.bind(this));
   }
-    
+
 });
