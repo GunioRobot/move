@@ -65,14 +65,12 @@ var MoveSlideShow = Class.create({
     
     this._loop.delay(this._timeout, this);
     
-    if (this._nextLink == true) {
-      this._observeController();
-    }
+    if (this._nextLink == true) this._observeController();
   },
     
   _loop: function(that) { 
     (function repeat() {
-      (that._hoverStop == false && that._clickStop == false) ? that._next(); 
+      if (!that._hoverStop && !that._clickStop) that._next(); 
       repeat.delay(that._timeout);
     })();
   },
@@ -102,23 +100,23 @@ var MoveSlideShow = Class.create({
     this._elements[elementOut].appear(this._duration);
   },
   
-  _observeController: function() {
-    this._nextLink.observe('click', function(event) {
-      event.preventDefault;
-      this._next();
-    }.bind(this));
-    
-    this._previousLink.observe('click', function(event) {
-      event.preventDefault;
-      this._previous();
-    }.bind(this));
-    
-    this._stopLink.observe('click', function(event) {
-      event.preventDefault;
-      this._clickStop = (this._clickStop != true);
-    }.bind(this));
-    
-  },
+  // _observeController: function() {
+  //   this._nextLink.observe('click', function(event) {
+  //     event.preventDefault;
+  //     this._next();
+  //   }.bind(this));
+  //   
+  //   this._previousLink.observe('click', function(event) {
+  //     event.preventDefault;
+  //     this._previous();
+  //   }.bind(this));
+  //   
+  //   this._stopLink.observe('click', function(event) {
+  //     event.preventDefault;
+  //     this._clickStop = (this._clickStop != true);
+  //   }.bind(this));
+  //   
+  // },
   
   _observeController: function() {
     this._container.observe('mouseenter', function() {
