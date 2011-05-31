@@ -35,7 +35,7 @@
  * @constructor
  */
 
-var MoveSlideshow = Class.create({
+var MoveSlideShow = Class.create({
   
   defaultConfig: {
     CONTAINER: "slideshow",

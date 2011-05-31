@@ -4,7 +4,9 @@ move, Readme File:
 
 # DESCRIPTION
 
-This small slideshow script provides ...
+This small slideshow script provides the basic functionality for sliding HTML container.
+
+It requires [Prototype](https://github.com/sstephenson/prototype) and [Scriptaculous](https://github.com/madrobby/scriptaculous).
 
 The script is licensed under [MIT License](http://www.opensource.org/licenses/mit-license.php)
 
