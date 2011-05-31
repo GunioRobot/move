@@ -89,10 +89,10 @@ var PrototypeSlideShow = Class.create({
 
   _previous: function() {
     if (this._activeElement != 0) {
-      this._fade(activeElement, activeElement -1);
+      this._fade(this._activeElement, this._activeElement -1);
       this._activeElement --;
     } else {
-      this._fade(activeElement, this._elementCount);
+      this._fade(this._activeElement, this._elementCount);
       this._activeElement = this._elementCount;
     }
   },
