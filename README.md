@@ -1,6 +1,6 @@
-prototype.slideShow, Readme File:
+move, Readme File:
 ==============================================================================
-2011-052-29, [Tobias Otte]
+2011-05-31, [Tobias Otte]
 
 # DESCRIPTION
 
@@ -35,14 +35,13 @@ demo/advanced.html
 * Add AJAX
 
 ##Known Bugs
-* Previous link don't work
 * Navi is not arbitrary
 * Doku
 * Styles
 
 # CHANGELOG
 
-* 2011-05-29
+* 2011-05-31
   * Alpha 0.1
 * 2011-02-13
 	* Creation
