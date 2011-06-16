@@ -68,7 +68,6 @@ var MoveSlideShow = Class.create({
     
   _loop: function(that) { 
     (function repeat() {
-      console.log(that._playBack);
       if (that._playBack) that._next(); 
       repeat.delay(that._timeout);
     })();
@@ -106,20 +105,17 @@ var MoveSlideShow = Class.create({
       .observe('mouseleave', function() {
         document.fire("MoveSlideShow:playBack");
       })
-      .observe('click', function(event) {
+      .on('click', function(event, anchor) {
         event.preventDefault;
-        this._next();
+        switch(anchor) {
+          case this._nextLink:
+            this._next();
+          break;
+          case this._previousLink:
+            this._previous();
+          break;          
+        }
       }.bind(this));
-    
-    // this._previousLink.observe('click', function(event) {
-    //   event.preventDefault;
-    //   this._previous();
-    // }.bind(this));
-    // 
-    // this._stopLink.observe('click', function(event) {
-    //   event.preventDefault;
-    //   this._clickStop = (this._clickStop != true);
-    // }.bind(this));
   },
   
   _fade: function(elementIn, elementOut) {
