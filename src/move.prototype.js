@@ -42,7 +42,6 @@ var MoveSlideShow = Class.create({
     ELEMENTS: "li",
     DURATION: "1.0",
     TIMEOUT: "5",
-    AUTOPLAY: true,
     AUTOSTOP: true
   },
   
@@ -56,21 +55,21 @@ var MoveSlideShow = Class.create({
     this._stopLink = this._container.down(this._options.stopLink) || false;
     this._duration = this._options.duration || this.defaultConfig.DURATION;
     this._timeout = this._options.timeout || this.defaultConfig.TIMEOUT;
-    this._autoplay = this._options.autoplay || this.defaultConfig.AUTOPLAY;
+    this._autoplay = this._options.autoplay || true;
         
     this._activeElement = 0;
     this._elementCount = this._elements.length - 1;
-    this._hoverStop = false;
-    this._clickStop = (this._autoplay == true) ? false : true;
+    this._playBack = this._autoplay;
     
     this._loop.delay(this._timeout, this);
     
-    if (this._nextLink == true) this._observeController();
+    this._observe();
   },
     
   _loop: function(that) { 
     (function repeat() {
-      if (!that._hoverStop && !that._clickStop) that._next(); 
+      console.log(that._playBack);
+      if (that._playBack) that._next(); 
       repeat.delay(that._timeout);
     })();
   },
@@ -95,37 +94,37 @@ var MoveSlideShow = Class.create({
     }
   },
   
+  _observe: function() {
+    document.observe("MoveSlideShow:playBack", function() {
+      this._playBack = (this._playBack != true);
+    }.bind(this));
+    
+    this._container
+      .observe('mouseenter', function() {
+        document.fire("MoveSlideShow:playBack");
+      })
+      .observe('mouseleave', function() {
+        document.fire("MoveSlideShow:playBack");
+      })
+      .observe('click', function(event) {
+        event.preventDefault;
+        this._next();
+      }.bind(this));
+    
+    // this._previousLink.observe('click', function(event) {
+    //   event.preventDefault;
+    //   this._previous();
+    // }.bind(this));
+    // 
+    // this._stopLink.observe('click', function(event) {
+    //   event.preventDefault;
+    //   this._clickStop = (this._clickStop != true);
+    // }.bind(this));
+  },
+  
   _fade: function(elementIn, elementOut) {
     this._elements[elementIn].fade(this._duration);
     this._elements[elementOut].appear(this._duration);
-  },
-  
-  // _observeController: function() {
-  //   this._nextLink.observe('click', function(event) {
-  //     event.preventDefault;
-  //     this._next();
-  //   }.bind(this));
-  //   
-  //   this._previousLink.observe('click', function(event) {
-  //     event.preventDefault;
-  //     this._previous();
-  //   }.bind(this));
-  //   
-  //   this._stopLink.observe('click', function(event) {
-  //     event.preventDefault;
-  //     this._clickStop = (this._clickStop != true);
-  //   }.bind(this));
-  //   
-  // },
-  
-  _observeController: function() {
-    this._container.observe('mouseenter', function() {
-      this._hoverStop = true;
-    }.bind(this));
-      
-    this._container.observe('mouseleave', function() {
-      this._hoverStop = false;
-    }.bind(this));
   }
 
 });
