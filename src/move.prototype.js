@@ -59,7 +59,7 @@ var MoveSlideShow = Class.create({
         
     this._activeElement = 0;
     this._elementCount = this._elements.length - 1;
-    this._playBack = this._autoplay;
+    this._playBack = [true, this._autoplay];
     
     this._loop.delay(this._timeout, this);
     
@@ -68,7 +68,9 @@ var MoveSlideShow = Class.create({
     
   _loop: function(that) { 
     (function repeat() {
-      if (that._playBack) that._next(); 
+      if (that._playBack[0] === true && that._playBack[1] === true) {
+        that._next();
+      }; 
       repeat.delay(that._timeout);
     })();
   },
@@ -93,9 +95,25 @@ var MoveSlideShow = Class.create({
     }
   },
   
+  _stop: function() {
+    if (this._playBack[1] === true) {
+      this._stopLink.update("play");
+      this._playBack[1] = false;
+    } else {
+      this._stopLink.update("stop");
+      this._playBack[1] = true;
+    };
+    
+  },
+
+  _fade: function(elementIn, elementOut) {
+    this._elements[elementIn].fade(this._duration);
+    this._elements[elementOut].appear(this._duration);
+  },
+  
   _observe: function() {
     document.observe("MoveSlideShow:playBack", function() {
-      this._playBack = (this._playBack != true);
+      this._playBack[0] = (this._playBack[0] != true);
     }.bind(this));
     
     this._container
@@ -113,14 +131,12 @@ var MoveSlideShow = Class.create({
           break;
           case this._previousLink:
             this._previous();
-          break;          
+          break;
+          case this._stopLink:
+            this._stop();
+          break;    
         }
       }.bind(this));
-  },
-  
-  _fade: function(elementIn, elementOut) {
-    this._elements[elementIn].fade(this._duration);
-    this._elements[elementOut].appear(this._duration);
   }
 
 });
