@@ -36,7 +36,7 @@
  */
 
 var MoveSlideShow = Class.create({
-  
+
   defaultConfig: {
     CONTAINER: "slideshow",
     ELEMENTS: "li",
@@ -44,10 +44,10 @@ var MoveSlideShow = Class.create({
     TIMEOUT: "5",
     AUTOPLAY: true
   },
-  
-  initialize: function(options) {    
+
+  initialize: function(options) {
     this._options = options || {};
-        
+
     this._container = this._options.container || $(this.defaultConfig.CONTAINER);
     this._elements = this._container.getElementsBySelector(this.defaultConfig.ELEMENTS);
     this._nextLink = this._container.down(this._options.nextLink) || false;
@@ -56,27 +56,27 @@ var MoveSlideShow = Class.create({
     this._duration = this._options.duration || this.defaultConfig.DURATION;
     this._timeout = this._options.timeout || this.defaultConfig.TIMEOUT;
     this._autoplay = this._options.autoplay || this.defaultConfig.AUTOPLAY;
-    
+
     this._container.addClassName("prototype-slideshow");
-    
+
     this._activeElement = 0;
     this._elementCount = this._elements.length - 1;
     this._hoverStop = false;
     this._clickStop = (this._autoplay == true) ? false : true;
-    
+
     this._observe();
     this._loop.delay(this._timeout, this);
   },
-    
-  _loop: function(that) { 
+
+  _loop: function(that) {
     (function repeat() {
       if (that._hoverStop == false && that._clickStop == false) {
         that._next();
-      } 
+      }
       repeat.delay(that._timeout);
     })();
   },
-  
+
   _next: function() {
     if (this._activeElement < this._elementCount) {
       this._fade(this._activeElement, this._activeElement + 1);
@@ -96,35 +96,35 @@ var MoveSlideShow = Class.create({
       this._activeElement = this._elementCount;
     }
   },
-  
+
   _fade: function(elementIn, elementOut) {
     this._elements[elementIn].fade(this._duration);
     this._elements[elementOut].appear(this._duration);
   },
-  
+
   _observe: function() {
     this._nextLink.observe('click', function(event) {
       event.preventDefault;
       this._next();
     }.bind(this));
-    
+
     this._previousLink.observe('click', function(event) {
       event.preventDefault;
       this._previous();
     }.bind(this));
-    
+
     this._stopLink.observe('click', function(event) {
       event.preventDefault;
       this._clickStop = (this._clickStop != true);
     }.bind(this));
-    
+
     this._container.observe('mouseenter', function() {
       this._hoverStop = true;
     }.bind(this));
-      
+
     this._container.observe('mouseleave', function() {
       this._hoverStop = false;
     }.bind(this));
   }
-    
+
 });

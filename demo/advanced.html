@@ -1,7 +1,7 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-<title>Advanced Example</title> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Advanced Example</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
 <script src="http://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js" charset="utf-8"></script>
@@ -22,7 +22,7 @@ document.observe("dom:loaded", function() {
 </script>
 
 <style type="text/css">
-  
+
   #slideshow {
     position: relative;
     margin: 30px auto;
@@ -34,18 +34,18 @@ document.observe("dom:loaded", function() {
     font-family: "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
     overflow: hidden;
   }
-  
+
   #slideshow ul {
     padding: 0;
     margin: 0;
     list-style: none;
   }
-  
+
   #slideshow li {
     position: absolute;
     padding: 0;
   }
-  
+
   .nav {
     width: 630px;
     position: absolute;
@@ -56,7 +56,7 @@ document.observe("dom:loaded", function() {
     padding: 5px;
     opacity: 0;
   }
-  
+
   #slideshow:hover .nav {
     opacity: 100;
     bottom: 0;
@@ -64,7 +64,7 @@ document.observe("dom:loaded", function() {
     -moz-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
   }
-  
+
   .nav a {
     color: #fff;
     font-size: 20px;
@@ -76,9 +76,9 @@ document.observe("dom:loaded", function() {
 </head>
 
 <body>
-  
+
   <div id="slideshow">
-  
+
     <ul>
       <li>
         <img src="img/1.jpg">
@@ -96,7 +96,7 @@ document.observe("dom:loaded", function() {
         <img src="img/5.jpg">
       </li>
     </ul>
-  
+
     <div class="nav">
       <a href="#" class="next">next</a>
       <a href="#" class="stop">stop</a>
@@ -104,6 +104,6 @@ document.observe("dom:loaded", function() {
     </div>
 
   </div>
-  
+
 </body>
 </html>
